@@ -81,13 +81,47 @@ class TicTacToeGame
 
     private bool CheckWin(char mark)
     {
-        
+        for (int i = 0; i < BoardSize; i++)
+        {
+            if (board[i, 0] == mark && board[i, 1] == mark && board[i, 2] == mark)
+            {
+                return true;
+            }
+        }
+
+        // Check columns
+        for (int j = 0; j < BoardSize; j++)
+        {
+            if (board[0, j] == mark && board[1, j] == mark && board[2, j] == mark)
+            {
+                return true;
+            }
+        }
+        // Check diagonals
+        if ((board[0, 0] == mark && board[1, 1] == mark && board[2, 2] == mark) ||
+            (board[0, 2] == mark && board[1, 1] == mark && board[2, 0] == mark))
+        {
+            return true;
+        }
         return false;
     }
 
     private bool CheckDraw()
     {
-        
+        // Check if all cells are filled
+        for (int i = 0; i < BoardSize; i++)
+        {
+            for (int j = 0; j < BoardSize; j++)
+            {
+                if (board[i, j] == ' ')
+                {
+                    // There's an empty cell, game is not drawn yet
+                    return false;
+                }
+            }
+        }
+        // All cells are filled, and no one has won, it's a draw
+
         return false;
     }
 }
